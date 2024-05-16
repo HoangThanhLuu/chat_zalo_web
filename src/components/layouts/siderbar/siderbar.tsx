@@ -13,7 +13,7 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import SubMenu from "antd/es/menu/SubMenu";
-
+import ModalInformation from "../../modals/ModalInformation";
 import axios from "axios";
 
 const Siderbar: React.FC = () => {
@@ -109,7 +109,12 @@ const Siderbar: React.FC = () => {
             >
               Hồ sơ của bạn
             </Menu.Item>
-           
+            <ModalInformation
+              open={isOpenModalInfo}
+              onCancel={handleCancel}
+              onOk={handleOk}
+              user={user}
+            />
             <Menu.Item key="cd">Cài đặt</Menu.Item>
             <Menu.Item key="dx" onClick={handleLogout}>Đăng xuất</Menu.Item>
           </SubMenu>
