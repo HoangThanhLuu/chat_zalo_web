@@ -30,7 +30,7 @@ import "./Message.css";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import ModalShareData from "../../components/modals/ModalShareData";
-
+import ModalAddMembers from "../../components/modals/ModalAddMembers";
 
 
 const { Header, Content, Sider, Footer } = Layout;
@@ -842,7 +842,12 @@ const MessagePage: React.FC = () => {
                   />
                   <p>Thêm thành viên</p>
                 </Button>
-               
+                <ModalAddMembers
+                  open={isOpenModalAddMember}
+                  onCancel={handleCancel}
+                  onOk={handleOk}
+                  conversationId={conversationId}
+                />
                 <Button
                   type="text"
                   style={{
@@ -862,6 +867,14 @@ const MessagePage: React.FC = () => {
                   <p>Tạo nhóm </p>
                 </Button>
 
+
+
+                <ModalShareData
+                  open={isOpenModalShareData}
+                  onCancel={handleCancelModalShare}
+                  onOk={handleOkModalShare}
+                  messageId={messageId}
+                />
                 
               
               </div>
