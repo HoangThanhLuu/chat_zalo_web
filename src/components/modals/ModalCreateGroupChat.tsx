@@ -86,7 +86,20 @@ const ModalCreateGroupChat: React.FC<ModalProps> = ({ open, onCancel }) => {
   };
 
   const handleCheckboxChange = (itemId: string): void => {
+    const updatedMemberIds: string[] = [...memberIds]; 
+
+    if (memberIds.includes(itemId)) {
+      const index = updatedMemberIds.indexOf(itemId);
+      updatedMemberIds.splice(index, 1);
+    } else {
    
+      updatedMemberIds.push(itemId);
+    }
+
+    setMemberIds(updatedMemberIds);
+  };
+  const handleChatNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChatName(event.target.value);
   };
 
   return (
