@@ -43,7 +43,40 @@ const ModalCreateGroupChat: React.FC<ModalProps> = ({ open, onCancel }) => {
     getList();
   }, []);
   const handleSearch = (e: any) => {
-    
+    setLoading(true);
+    const token = localStorage.getItem("token");
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    axios
+      .get(`http://localhost:8000/friend/find/${phoneNumber}`, config)
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+
+        if (data.friend) {
+          setFriends([data.friend]);
+          console.log([data.friend]);
+        } else {
+          message.info("Friend not found.");
+        }
+      })
+
+      .catch((error) => {
+        console.error("Error searching friend:", error);
+        message.error("Failed to search for friend.");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+  const dummyRequest = async ({ file, onSuccess }) => {
+    setTimeout(() => {
+      onSuccess("ok");
+    }, 0);
   };
   const dummyRequest = async ({ file, onSuccess }) => {
     setTimeout(() => {
