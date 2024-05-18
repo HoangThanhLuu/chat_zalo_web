@@ -32,7 +32,35 @@ const ListGroups: React.FC = () => {
     },
   ];
   const handleSearch = (e: any) => {
-    
+    setLoading(true);
+    const token = localStorage.getItem("token");
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    axios
+      .get(`http://localhost:8000/friend/find/${e}`, config)
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+
+        if (data.friend) {
+          setFriendSearchs([data.friend]);
+          console.log([data.friend]);
+        } else {
+          message.info("Friend not found.");
+        }
+      })
+
+      .catch((error) => {
+        console.error("Error searching friend:", error);
+        message.error("Failed to search for friend.");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
   return (
     <Row>
