@@ -78,13 +78,20 @@ const ModalCreateGroupChat: React.FC<ModalProps> = ({ open, onCancel }) => {
       onSuccess("ok");
     }, 0);
   };
-  const dummyRequest = async ({ file, onSuccess }) => {
-    setTimeout(() => {
-      onSuccess("ok");
-    }, 0);
-  };
   const uploadImage = {
-   
+    name: "file",
+    multiple: true,
+    customRequest: dummyRequest,
+    accept: "image/png,image/gif,image/jpeg",
+    onChange(info) {
+      console.log(info);
+      setFile(info.file);
+      if (info.file.status === "done") {
+        message.success(`${info.file.name} file uploaded successfully`);
+      } else if (info.file.status === "error") {
+        message.error(`${info.file.name} file upload failed.`);
+      }
+    },
   };
   const CreateGroupChat = async () => {
     const formData = new FormData();
