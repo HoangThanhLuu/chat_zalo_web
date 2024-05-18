@@ -17,7 +17,19 @@ const ListGroups: React.FC = () => {
   const [friendSearchs, setFriendSearchs] = useState<IFriends[] | null>(null);
   const [loading, setLoading] = useState(false);
   const data = [
-    
+    {
+      userName: "Nguyễn Ngọc Chính",
+      chat: "Bạn : Hello",
+    },
+    {
+      userName: "Nguyễn Ngọc Tuấn",
+      chat: "Bạn : Hello",
+    },
+
+    {
+      userName: "Nguyễn Ngọc Tuấn",
+      chat: "Bạn : Hello",
+    },
   ];
   const handleSearch = (e: any) => {
     
