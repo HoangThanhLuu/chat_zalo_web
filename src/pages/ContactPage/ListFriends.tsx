@@ -9,6 +9,7 @@ import Siderbar from "../../components/layouts/siderbar/siderbar";
 import Search from "../../components/layouts/search/search";
 import { UserAddOutlined, UsergroupAddOutlined } from "@ant-design/icons";
 import ListDataFriends from "../MessagePage/ListDataFriends";
+import PORT from "../../server/index.js"
 // const { Search } = Input;
 const ListFriends: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -19,7 +20,7 @@ const ListFriends: React.FC = () => {
     const getList = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:8000/friend/list", {
+        const response = await axios.get(`${PORT}/friend/list`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -44,7 +45,7 @@ const ListFriends: React.FC = () => {
       },
     };
     axios
-      .get(`http://localhost:8000/friend/find/${e}`, config)
+      .get(`${PORT}/friend/find/${e}`, config)
       .then((response) => {
         const data = response.data;
         console.log(data);
