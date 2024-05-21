@@ -15,7 +15,6 @@ import { Link } from "react-router-dom";
 import SubMenu from "antd/es/menu/SubMenu";
 import ModalInformation from "../../modals/ModalInformation";
 import axios from "axios";
-import PORT from "../../../server/index.js"
 
 const Siderbar: React.FC = () => {
   const [isOpenModalInfo, setIsOpenModalInfo] = useState(false);
@@ -27,7 +26,7 @@ const Siderbar: React.FC = () => {
     
     if (token) {
       axios
-        PORT.get("/auth/user", {
+        .get("http://localhost:8000/auth/user", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

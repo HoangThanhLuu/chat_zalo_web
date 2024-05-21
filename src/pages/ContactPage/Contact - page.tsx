@@ -8,7 +8,7 @@ import { IFriends } from "../../components/models/friends";
 import axios from "axios";
 import { UserAddOutlined, UsergroupAddOutlined } from "@ant-design/icons";
 import ListDataFriends from "../MessagePage/ListDataFriends";
-import PORT from "../../server/index.js"
+
 const ContactPage: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [friends, setFriends] = useState<IFriends[] | null>(null);
@@ -24,7 +24,7 @@ const ContactPage: React.FC = () => {
       },
     };
     axios
-      .get(`${PORT}/friend/find/${e}`, config)
+      .get(`http://localhost:8000/friend/find/${e}`, config)
       .then((response) => {
         const data = response.data;
         console.log(data);
